@@ -30,7 +30,6 @@ class Grid
   end
 
   def configure_cells
-    
     each_cell do |cell|
       cell.north = self[cell.row - 1, cell.col]
       cell.south = self[cell.row + 1, cell.col]
@@ -53,6 +52,10 @@ class Grid
     end
   end
 
+  def contents_of(cell)
+    '   '
+  end
+
   def to_s(mode = :ascii)
     [:ascii, :roguelike].include?(mode) or
       raise "Invalid mode: #{mode}"
@@ -65,7 +68,8 @@ class Grid
       body, foot = '¦', '+'
       row.each do |cell|
         cell = Cell.new(-1, -1) unless cell
-        body << (cell.linked?(cell.east)  ? '    ' : '   ¦')
+        c = contents_of(cell)
+        body << (cell.linked?(cell.east)  ? "#{c} " : "#{c}¦")
         foot << (cell.linked?(cell.south) ? '   +' : '---+')
       end
       str << body << "\n" << foot << "\n"

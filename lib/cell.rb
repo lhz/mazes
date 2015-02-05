@@ -1,3 +1,5 @@
+require 'distance_map'
+
 class Cell
   attr_reader   :row, :col
   attr_accessor :north, :south, :east, :west
@@ -13,7 +15,7 @@ class Cell
   end
 
   def link(other, bidirectional = true)
-    puts "Linking cells #{coords} and #{other.coords}." if $debug
+    puts "  Linking cells #{coords} and #{other.coords}." if $debug && bidirectional
     @links[other] = true
     other.link(self, false) if bidirectional
     self
@@ -35,5 +37,23 @@ class Cell
 
   def neighbors
     [north, south, east, west].compact
+  end
+
+  def distances
+    @distances ||= DistanceMap.new(self).tap do |dmap|
+      frontier = [self]
+      while frontier.any?
+        frontier = frontier.flat_map do |cell|
+          cell.links.map do |neighbor|
+            if dmap[neighbor]
+              nil
+            else
+              dmap[neighbor] = dmap[cell] + 1
+              neighbor
+            end
+          end
+        end.compact
+      end
+    end
   end
 end

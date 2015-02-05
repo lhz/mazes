@@ -19,7 +19,6 @@ class Algorithm
 
   def initialize(grid)
     @grid = grid
-    run
   end
 
   def run

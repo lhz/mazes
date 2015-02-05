@@ -1,3 +1,5 @@
+require 'algorithm'
+
 class BinaryTree < Algorithm
 
   def run

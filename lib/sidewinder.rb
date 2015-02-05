@@ -1,6 +1,9 @@
+require 'algorithm'
+
 class Sidewinder < Algorithm
 
   def run
+    puts "Running #{self.class} algorithm." if $debug
     each_row do |row|
       run = []
       row.each do |cell|
