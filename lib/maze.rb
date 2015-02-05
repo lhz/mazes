@@ -20,7 +20,14 @@ class Maze
     end
   end
 
-  def inspect_old
+  def to_s(mode = :unicode)
+    case mode
+    when :unicode then to_unicode
+    else to_ascii
+    end
+  end
+
+  def to_ascii
     result = ''
     cells.each_slice(width).with_index do |row, y|
       result << (y > 0 ? "\u251C" : "\u250C")
@@ -45,20 +52,20 @@ class Maze
     result
   end
 
-  def drawing
+  def to_unicode
     result = ""
     height.times.each do |y|
       width.times.each do |x|
-        result << char_ul(y, x) << char_uc(y, x) * 2
+        result << char_ul(y, x) << char_uc(y, x) * 3
       end
       result << char_ul(y, width) << "\n"
       width.times.each do |x|
-        result << char_ml(y, x) << "  "
+        result << char_ml(y, x) << "   "
       end
       result << char_ml(y, width) << "\n"
     end
     width.times.each do |x|
-      result << char_ul(height, x) << char_uc(height, x) * 2
+      result << char_ul(height, x) << char_uc(height, x) * 3
     end
     result << char_ul(height, width) << "\n"
     result

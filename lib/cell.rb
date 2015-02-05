@@ -1,22 +1,39 @@
 class Cell
-  def initialize
-    @north_wall = true
-    @east_wall  = true
+  attr_reader   :row, :col
+  attr_accessor :north, :south, :east, :west
+
+  def initialize(row, col)
+    @row   = row
+    @col   = col
+    @links = {}
   end
 
-  def open_north
-    @north_wall = false
+  def coords
+    "(%d,%d)" % [row, col]
   end
 
-  def open_east
-    @east_wall = false
+  def link(other, bidirectional = true)
+    puts "Linking cells #{coords} and #{other.coords}." if $debug
+    @links[other] = true
+    other.link(self, false) if bidirectional
+    self
   end
 
-  def north_wall?
-    @north_wall
+  def unlink(other, bidirectional = true)
+    @links.delete(other)
+    other.unlink(self, false) if bidirectional
+    self
   end
 
-  def east_wall?
-    @east_wall
+  def links
+    @links.keys
+  end
+
+  def linked?(other)
+    @links.key? other
+  end
+
+  def neighbors
+    [north, south, east, west].compact
   end
 end

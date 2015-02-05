@@ -20,5 +20,5 @@ maze.height.times do |y|
   end
 end
 
-puts maze.drawing
+puts maze
 
