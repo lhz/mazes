@@ -13,7 +13,7 @@ class Dijkstra < Visual
   width  500
   height 500
   bgcolor '#808080'
-  fps 20
+  fps 10
 
   def init
     @grid = ColoredGrid[39, 39]
@@ -23,9 +23,9 @@ class Dijkstra < Visual
   end
 
   def draw
-    # col = (7.49 + 7.49 * cos(PI * frame / 32.0)).floor
-    # row = (7.49 + 7.49 * sin(PI * frame / 32.0)).floor
-    # @grid.distances = @grid[row, col].distances
+    col = (19.49 + 19.49 * cos(PI * frame / 32.0)).floor
+    row = (19.49 + 19.49 * sin(PI * frame / 32.0)).floor
+    @grid.distances = @grid[row, col].distances
 
     gc = '#000000'
     gw = 12
@@ -56,6 +56,9 @@ class Dijkstra < Visual
         end
       end
     end
+    x1, y1 = x0 + gw * col, y0 + gw * row
+    x2, y2 = x0 + gw * (col + 1), y0 + gw * (row + 1)
+    circle center: [x1 + 5, y1 + 5], radius: 3, fill: '#000000'
   end
 end
 
