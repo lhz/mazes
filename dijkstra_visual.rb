@@ -7,19 +7,25 @@ require 'sidewinder'
 require 'visual'
 
 class Dijkstra < Visual
+  include Math
 
   width  400
   height 400
   bgcolor '#808080'
-  fps 10
+  fps 20
 
   def init
-    @grid = ColoredGrid[16, 16]
+    @grid = ColoredGrid[15, 15]
     Sidewinder.on(@grid)
     @grid.distances = @grid[@grid.rows / 2, @grid.cols / 2].distances
   end
 
   def draw
+    
+    col = (7.49 + 7.49 * cos(PI * frame / 32.0)).floor
+    row = (7.49 + 7.49 * sin(PI * frame / 32.0)).floor
+    @grid.distances = @grid[row, col].distances
+
     gc = '#000000'
     gw = 20
     x0 = (width  - gw * @grid.cols) / 2
