@@ -21,7 +21,8 @@ class Dijkstra < Visual
     @grid = ColoredGrid[39, 39]
     # Sidewinder.on @grid
     HuntAndKill.on @grid
-    @grid.distances = @grid[@grid.rows / 2, @grid.cols / 2].distances
+    # @grid.distances = @grid[@grid.rows / 2, @grid.cols / 2].distances
+    @grid.find_longest_path
   end
 
   def draw

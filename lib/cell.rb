@@ -39,16 +39,20 @@ class Cell
     links.any?
   end
 
+  def unvisited?
+    !visited?
+  end
+
   def neighbors
     [north, south, east, west].compact
   end
 
-  def unvisited_neighbors
-    neighbors.reject(&:visited?)
+  def visited_neighbors
+    neighbors.select &:visited?
   end
 
-  def visited_neighbors
-    neighbors.select(&:visited?)
+  def unvisited_neighbors
+    neighbors.select &:unvisited?
   end
 
   def distances

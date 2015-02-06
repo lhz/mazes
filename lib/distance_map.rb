@@ -21,7 +21,7 @@ class DistanceMap
   def path_to(goal)
     current = goal
 
-    breadcrumbs = Distances.new(@root)
+    breadcrumbs = DistanceMap.new(@root)
     breadcrumbs[current] = @cells[current]
 
     until current == @root

@@ -38,6 +38,14 @@ class Grid
     end
   end
 
+  def find_longest_path
+    dist = self[0, 0].distances
+    cell, _ = dist.max
+    dist = cell.distances
+    goal, dmax = dist.max
+    self.distances = dist.path_to(goal)
+  end
+  
   def each_row
     @grid.each do |row|
       yield row
