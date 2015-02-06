@@ -6,6 +6,7 @@ require 'colored_grid'
 require 'sidewinder'
 require 'aldous_broder'
 require 'wilson'
+require 'hunt_and_kill'
 require 'visual'
 
 class Dijkstra < Visual
@@ -19,7 +20,7 @@ class Dijkstra < Visual
   def init
     @grid = ColoredGrid[39, 39]
     # Sidewinder.on @grid
-    Wilson.on @grid
+    HuntAndKill.on @grid
     @grid.distances = @grid[@grid.rows / 2, @grid.cols / 2].distances
   end
 
