@@ -35,8 +35,20 @@ class Cell
     @links.key? other
   end
 
+  def visited?
+    links.any?
+  end
+
   def neighbors
     [north, south, east, west].compact
+  end
+
+  def unvisited_neighbors
+    neighbors.reject(&:visited?)
+  end
+
+  def visited_neighbors
+    neighbors.select(&:visited?)
   end
 
   def distances

@@ -7,7 +7,7 @@ class HuntAndKill < Algorithm
 
     current = grid.random_cell
     while current
-      unvisited_neighbors = current.neighbors.select { |n| n.links.empty? }
+      unvisited_neighbors = current.unvisited_neighbors
       if unvisited_neighbors.any?
         neighbor = unvisited_neighbors.sample
         current.link(neighbor)
@@ -15,7 +15,7 @@ class HuntAndKill < Algorithm
       else
         current = nil
         grid.each_cell do |cell|
-          visited_neighbors = cell.neighbors.select { |n| n.links.any? }
+          visited_neighbors = cell.visited_neighbors
           if cell.links.empty? && visited_neighbors.any?
             current = cell
             neighbor = visited_neighbors.sample
