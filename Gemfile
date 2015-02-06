@@ -1,5 +1,5 @@
 source "https://rubygems.org"
 
-gem 'chunky_png'
+gem 'rubygame'
 gem 'awesome_print'
 gem 'pry'

@@ -90,8 +90,4 @@ class Grid
     end
     str
   end
-
-  def to_png(filename)
-    
-  end
 end
