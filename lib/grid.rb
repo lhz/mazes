@@ -52,6 +52,14 @@ class Grid
     end
   end
 
+  def size
+    rows * cols
+  end
+
+  def random_cell
+    @grid.flatten.sample
+  end
+
   def contents_of(cell)
     '   '
   end

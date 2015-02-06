@@ -4,30 +4,31 @@ $: << './lib'
 
 require 'colored_grid'
 require 'sidewinder'
+require 'aldous_broder'
 require 'visual'
 
 class Dijkstra < Visual
   include Math
 
-  width  400
-  height 400
+  width  500
+  height 500
   bgcolor '#808080'
   fps 20
 
   def init
-    @grid = ColoredGrid[15, 15]
-    Sidewinder.on(@grid)
+    @grid = ColoredGrid[39, 39]
+    # Sidewinder.on @grid
+    AldousBroder.on @grid
     @grid.distances = @grid[@grid.rows / 2, @grid.cols / 2].distances
   end
 
   def draw
-    
-    col = (7.49 + 7.49 * cos(PI * frame / 32.0)).floor
-    row = (7.49 + 7.49 * sin(PI * frame / 32.0)).floor
-    @grid.distances = @grid[row, col].distances
+    # col = (7.49 + 7.49 * cos(PI * frame / 32.0)).floor
+    # row = (7.49 + 7.49 * sin(PI * frame / 32.0)).floor
+    # @grid.distances = @grid[row, col].distances
 
     gc = '#000000'
-    gw = 20
+    gw = 12
     x0 = (width  - gw * @grid.cols) / 2
     y0 = (height - gw * @grid.rows) / 2
     @grid.each_row do |row|
