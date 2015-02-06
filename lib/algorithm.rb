@@ -5,7 +5,7 @@ class Algorithm
 
   attr_accessor :grid
 
-  def_delegators :@grid, :each_row, :each_cell
+  def_delegators :@grid, :each_row, :each_cell, :random_cell
 
   def self.[](height, width = height)
     on Grid[height, width]

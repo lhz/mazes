@@ -34,7 +34,9 @@ class DistanceMap
       end
     end
 
-    breadcrumbs
+    breadcrumbs.cells.each { |c| c[:breadcrumb] = true }
+
+    breadcrumbs.cells[1..-1] << breadcrumbs.cells[0]
   end
 
   def max

@@ -43,7 +43,8 @@ class Grid
     cell, _ = dist.max
     dist = cell.distances
     goal, dmax = dist.max
-    self.distances = dist.path_to(goal)
+    self.distances = goal.distances
+    dist.path_to(goal)
   end
   
   def each_row
@@ -66,6 +67,10 @@ class Grid
 
   def random_cell
     @grid.flatten.sample
+  end
+
+  def deadends
+    @grid.flatten.select(&:deadend?)
   end
 
   def contents_of(cell)

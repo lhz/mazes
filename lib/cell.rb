@@ -8,6 +8,15 @@ class Cell
     @row   = row
     @col   = col
     @links = {}
+    @info  = {}
+  end
+
+  def [](key)
+    @info[key]
+  end
+
+  def []=(key, value)
+    @info[key] = value
   end
 
   def coords
@@ -33,6 +42,10 @@ class Cell
 
   def linked?(other)
     @links.key? other
+  end
+
+  def deadend?
+    links.size == 1
   end
 
   def visited?
