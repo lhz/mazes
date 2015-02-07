@@ -1,4 +1,6 @@
+require 'mask'
 require 'colored_grid'
+require 'masked_grid'
 require 'binary_tree'
 require 'sidewinder'
 require 'aldous_broder'

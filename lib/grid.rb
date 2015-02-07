@@ -39,7 +39,7 @@ class Grid
   end
 
   def find_longest_path
-    dist = self[0, 0].distances
+    dist = random_cell.distances
     cell, _ = dist.max
     dist = cell.distances
     goal, dmax = dist.max
